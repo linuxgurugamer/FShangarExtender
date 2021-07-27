@@ -40,3 +40,8 @@ ChangeLog
 3.6
 	Added InstallChecker
 	Updated for KSP 1.8
+
+3.6.0.1
+	Renamed DLL for CKAN compatibility
+	Added AssemblyFileVersion
+	Updated version file for 1.12
