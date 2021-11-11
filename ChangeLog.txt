@@ -45,3 +45,6 @@ ChangeLog
 	Renamed DLL for CKAN compatibility
 	Added AssemblyFileVersion
 	Updated version file for 1.12
+
+3.6.0.2 
+	Removed old Config directory from release
