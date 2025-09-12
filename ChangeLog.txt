@@ -48,3 +48,8 @@ ChangeLog
 
 3.6.0.2 
 	Removed old Config directory from release
+
+3.6.1
+	Added option to always start in external view (stock settings page)
+	Minor cleanup
+	Updated version file to use github for new version info

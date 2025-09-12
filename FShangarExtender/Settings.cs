@@ -48,12 +48,23 @@ namespace FShangarExtender
             if (!active)
                 return;
 
-            if (Time.realtimeSinceStartup - lastTimeTic > 0.25)            {                active = false;                return;            }
+            if (Time.realtimeSinceStartup - lastTimeTic > 0.25)
+            {
+                active = false;
+                return;
+            }
 
-            // The settings are only available in the space center
-            GUI.skin = HighLogic.Skin;
-            settingsRect = GUILayout.Window("HotKeySettings".GetHashCode(),                                            settingsRect,                                            SettingsWindowFcn,                                            "EVA Fuel Settings",                                            GUILayout.ExpandWidth(true),
-                                            GUILayout.ExpandHeight(true));
+            // The settings are only available in the space center
+
+            GUI.skin = HighLogic.Skin;
+
+            settingsRect = GUILayout.Window("HotKeySettings".GetHashCode(),
+                                            settingsRect,
+                                            SettingsWindowFcn,
+                                            "EVA Fuel Settings",
+                                            GUILayout.ExpandWidth(true),
+                                            GUILayout.ExpandHeight(true));
+
         }
 
         void Update()
@@ -65,9 +76,13 @@ namespace FShangarExtender
         }
 
         void SettingsWindowFcn(int windowID)
-        {            GUILayout.BeginHorizontal();            GUILayout.EndHorizontal();
-            GUILayout.BeginHorizontal();            GUILayout.Label("Enter desired hotkey: ");
-            GUILayout.Label(hotkey.ToString(), GUI.skin.textField);          
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Enter desired hotkey: ");
+            GUILayout.Label(hotkey.ToString(), GUI.skin.textField);          
+
             if (_lastKeyPressed != KeyCode.None)
             {
                 hotkey = _lastKeyPressed;
@@ -75,12 +90,18 @@ namespace FShangarExtender
             }
             // look at EEX
 
-            GUILayout.EndHorizontal();            GUILayout.FlexibleSpace();            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();            if (GUILayout.Button("OK", GUILayout.Width(60)))            {
+            GUILayout.EndHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("OK", GUILayout.Width(60)))
+            {
                 active = false;
                 completed = true;
             }
-            GUILayout.FlexibleSpace();            GUILayout.EndHorizontal();            GUI.DragWindow();
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+            GUI.DragWindow();
         }
 
     }
@@ -121,7 +142,10 @@ namespace FShangarExtender
 
         [GameParameters.CustomParameterUI("Advanced Debugging")]
         public bool advancedDebug = false;
-       
+
+        [GameParameters.CustomParameterUI("Start in external VAB")]
+        public bool startInExternalView = false;
+
 
         public override void SetDifficultyPreset(GameParameters.Preset preset)
         {
@@ -137,7 +161,8 @@ namespace FShangarExtender
 
         public override bool Interactible(MemberInfo member, GameParameters parameters)
         {
-            if (changeHotkey)            {
+            if (changeHotkey)
+            {
                 // Use MapView.MapCamera to get a gameObject
                 HangerExtenderSelectHotKey gui = MapView.MapCamera.gameObject.GetComponent<HangerExtenderSelectHotKey>();
                 if (gui == null)
@@ -164,7 +189,8 @@ namespace FShangarExtender
                             HangerExtenderSelectHotKey.Instance.hotkey = newHotKey;
                         }
                     }
-                }                           }
+                }               
+            }
            return true;
         }
 
